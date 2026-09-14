@@ -20,12 +20,12 @@
             top: 0; 
             z-index: 100;
         }
-        .logo-container { display: flex; align-items: center; gap: 8px; }
+        .logo-container { display: flex; align-items: center; gap: 8px; cursor: pointer; }
         .logo-icon { width: 34px; height: 34px; background: #0284c7; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 18px; }
         .logo-text { font-size: 20px; font-weight: 800; color: #0f172a; }
         .logo-text span { color: #0284c7; }
 
-        .wallet-badge { background: #e0f2fe; color: #0369a1; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: 700; }
+        .wallet-badge { background: #e0f2fe; color: #0369a1; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: 700; cursor: pointer; }
 
         /* Notice Bar */
         .notice-bar { background-color: #0284c7; color: #ffffff; padding: 10px 15px; text-align: center; font-size: 13px; font-weight: 500; }
@@ -94,7 +94,20 @@
             border-top: 1px solid #e2e8f0; 
             z-index: 100;
         }
-        .bar-item { text-align: center; font-size: 11px; color: #64748b; text-decoration: none; font-weight: 600; }
+        .bar-item { 
+            text-align: center; 
+            font-size: 11px; 
+            color: #64748b; 
+            text-decoration: none; 
+            font-weight: 600; 
+            background: none; 
+            border: none; 
+            cursor: pointer; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 2px;
+        }
         .bar-item.active { color: #0284c7; }
     </style>
 </head>
@@ -102,11 +115,11 @@
 
     <!-- Header -->
     <header>
-        <div class="logo-container">
+        <div class="logo-container" onclick="goHome()">
             <div class="logo-icon">A</div>
             <div class="logo-text">Abir<span>Shop</span></div>
         </div>
-        <div class="wallet-badge">৳ 0.00</div>
+        <div class="wallet-badge" onclick="navAlert('Add Money')">৳ 0.00</div>
     </header>
 
     <!-- Notice -->
@@ -171,12 +184,20 @@
 
     </div>
 
-    <!-- Bottom Menu Bar -->
+    <!-- Bottom Menu Bar (Working Clickable Action) -->
     <div class="bottom-bar">
-        <a href="#" class="bar-item active">🏠 Home</a>
-        <a href="#" class="bar-item">📦 My Orders</a>
-        <a href="#" class="bar-item">➕ Add Money</a>
-        <a href="#" class="bar-item">👤 Account</a>
+        <button class="bar-item active" onclick="goHome()">
+            <span>🏠</span> Home
+        </button>
+        <button class="bar-item" onclick="navAlert('My Orders')">
+            <span>📦</span> My Orders
+        </button>
+        <button class="bar-item" onclick="navAlert('Add Money')">
+            <span>➕</span> Add Money
+        </button>
+        <button class="bar-item" onclick="navAlert('Account')">
+            <span>👤</span> Account
+        </button>
     </div>
 
     <script>
@@ -285,6 +306,15 @@
                           `*Payment:* ${payment}`;
 
             window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${message}`, '_blank');
+        }
+
+        /* Navigation Actions */
+        function goHome() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function navAlert(menuName) {
+            alert(menuName + " অপশনটি খুব শীঘ্রই আসছে! যেকোনো প্রয়োজনে সরাসরি হোয়াটসঅ্যাপে যোগাযোগ করুন।");
         }
     </script>
 </body>
