@@ -5,100 +5,250 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abir Game Shop</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
-        body { background-color: #f4f6f9; padding-bottom: 70px; }
-        header { background-color: #0088cc; color: white; padding: 15px; text-align: center; font-size: 24px; font-weight: bold; }
-        .notice { background-color: #e0f2fe; color: #0369a1; padding: 10px; text-align: center; font-size: 14px; border-bottom: 1px solid #bae6fd; }
-        .container { max-width: 600px; margin: 15px auto; background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        h2 { font-size: 18px; margin-bottom: 12px; color: #333; border-bottom: 2px solid #0088cc; display: inline-block; padding-bottom: 3px; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
-        .card { border: 2px solid #e5e7eb; padding: 12px; border-radius: 6px; text-align: center; cursor: pointer; transition: 0.2s; }
-        .card:hover, .card.selected { border-color: #0088cc; background-color: #f0f9ff; }
-        .card .title { font-size: 14px; font-weight: bold; }
-        .card .price { color: #0088cc; font-weight: bold; margin-top: 5px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f8fafc; padding-bottom: 75px; }
+
+        /* Header Navigation */
+        header { 
+            background: #ffffff; 
+            padding: 12px 16px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06); 
+            position: sticky; 
+            top: 0; 
+            z-index: 100;
+        }
+        .logo { font-size: 20px; font-weight: 800; color: #0284c7; letter-spacing: -0.5px; }
+        .logo span { color: #0f172a; }
+        .btn-login { background-color: #0284c7; color: white; border: none; padding: 8px 18px; border-radius: 6px; font-weight: 600; font-size: 14px; cursor: pointer; }
+
+        /* Notice Banner */
+        .notice { background-color: #e0f2fe; color: #0369a1; padding: 10px 15px; text-align: center; font-size: 13px; font-weight: 500; border-bottom: 1px solid #bae6fd; }
+
+        /* Main Container */
+        .container { max-width: 600px; margin: 0 auto; padding: 15px; }
+
+        /* Section Titles */
+        .section-title { 
+            text-align: center; 
+            font-size: 20px; 
+            font-weight: 800; 
+            color: #1e3a8a; 
+            margin: 20px 0 15px 0; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px;
+        }
+
+        /* 3-Column Grid like TryShop */
+        .game-grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 12px; 
+            margin-bottom: 25px; 
+        }
+
+        .game-card { 
+            background: #ffffff; 
+            border-radius: 12px; 
+            overflow: hidden; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+            transition: transform 0.2s, box-shadow 0.2s; 
+            cursor: pointer; 
+            text-align: center;
+            border: 1px solid #f1f5f9;
+        }
+        .game-card:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,0.1); }
+        .game-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; }
+        .game-card .title { font-size: 12px; font-weight: 700; color: #334155; padding: 8px 5px; line-height: 1.3; }
+
+        /* Order Modal / Section Form */
+        .order-modal { display: none; background: white; padding: 18px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); margin-top: 15px; border: 1px solid #e2e8f0; }
+        .order-modal h3 { font-size: 16px; margin-bottom: 12px; color: #0f172a; border-bottom: 2px solid #0284c7; display: inline-block; padding-bottom: 3px; }
+
+        .pack-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 15px; }
+        .pack-card { border: 2px solid #e2e8f0; padding: 10px; border-radius: 8px; text-align: center; cursor: pointer; background: #fff; }
+        .pack-card.selected { border-color: #0284c7; background-color: #f0f9ff; }
+        .pack-card .pack-name { font-size: 13px; font-weight: 700; color: #1e293b; }
+        .pack-card .pack-price { color: #0284c7; font-weight: 800; font-size: 13px; margin-top: 3px; }
+
         .form-group { margin-bottom: 12px; }
-        label { display: block; font-size: 14px; margin-bottom: 5px; color: #555; }
-        select, input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; }
-        .btn-buy { width: 100%; background-color: #0088cc; color: white; padding: 12px; border: none; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; }
-        .btn-buy:hover { background-color: #006699; }
-        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: white; display: flex; justify-content: space-around; padding: 10px 0; box-shadow: 0 -2px 5px rgba(0,0,0,0.1); }
-        .nav-item { text-align: center; font-size: 12px; color: #666; text-decoration: none; }
+        .form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 5px; color: #475569; }
+        .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; outline: none; }
+        .form-group input:focus, .form-group select:focus { border-color: #0284c7; }
+
+        .btn-submit { width: 100%; background: #0284c7; color: white; padding: 12px; border: none; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer; }
+        .btn-submit:hover { background: #0369a1; }
+
+        /* Bottom Fixed Navigation Bar */
+        .bottom-nav { 
+            position: fixed; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            background: #ffffff; 
+            display: flex; 
+            justify-content: space-around; 
+            padding: 8px 0; 
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.08); 
+            z-index: 100;
+        }
+        .nav-item { text-align: center; font-size: 11px; color: #64748b; text-decoration: none; font-weight: 600; }
+        .nav-item svg { width: 22px; height: 22px; fill: #64748b; display: block; margin: 0 auto 3px auto; }
+        .nav-item.active { color: #0284c7; }
+        .nav-item.active svg { fill: #0284c7; }
     </style>
 </head>
 <body>
 
-    <header>Abir Game Shop</header>
+    <!-- Header Banner -->
+    <header>
+        <div class="logo">Abir<span>Shop</span></div>
+        <button class="btn-login">Login</button>
+    </header>
 
+    <!-- Notice -->
     <div class="notice">আমাদের সাইটে অর্ডার দিতে সমস্যা হলে হেল্পলাইনে যোগাযোগ করুন।</div>
 
     <div class="container">
-        <h2>1. Select Recharge</h2>
-        <div class="grid">
-            <div class="card" onclick="selectPackage(this, 250)"><div class="title">50 Coin 🔥 Android</div><div class="price">BDT 250</div></div>
-            <div class="card" onclick="selectPackage(this, 500)"><div class="title">100 Coin 🔥 Android</div><div class="price">BDT 500</div></div>
-            <div class="card" onclick="selectPackage(this, 780)"><div class="title">750 Coin 🔥 Android</div><div class="price">BDT 780</div></div>
-            <div class="card" onclick="selectPackage(this, 1040)"><div class="title">1040 Coin 🔥 Android</div><div class="price">BDT 1040</div></div>
+        
+        <!-- Category 1: E-Football -->
+        <div class="section-title">E-FOOTBALL ( PES ) 2027</div>
+        <div class="game-grid">
+            <div class="game-card" onclick="openOrderForm('eFootball Special Offer')">
+                <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=300" alt="E-Football Offer">
+                <div class="title">EFootball™ Special Offer (Android & iOS)</div>
+            </div>
+            <div class="game-card" onclick="openOrderForm('eFootball Android')">
+                <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=300" alt="E-Football Android">
+                <div class="title">EFootball™ [Android]</div>
+            </div>
+            <div class="game-card" onclick="openOrderForm('eFootball iOS')">
+                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=300" alt="E-Football iPhone">
+                <div class="title">EFootball™ [ I-Phone ]</div>
+            </div>
         </div>
 
-        <h2>2. Account Info</h2>
-        <form id="orderForm" onsubmit="handleOrder(event)">
-            <div class="form-group">
-                <label>Account Type</label>
-                <select id="accType" required>
-                    <option value="KONAMI">KONAMI</option>
-                    <option value="Facebook">Facebook</option>
-                    <option value="Gmail">Gmail</option>
-                </select>
+        <!-- Category 2: Dream League Soccer -->
+        <div class="section-title">Dream League Soccer 2026</div>
+        <div class="game-grid">
+            <div class="game-card" onclick="openOrderForm('DLS 26 Coins')">
+                <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=300" alt="DLS 26">
+                <div class="title">DLS 26</div>
             </div>
-            <div class="form-group">
-                <label>Email / User ID</label>
-                <input type="text" id="userId" placeholder="Enter Email or ID" required>
+            <div class="game-card" onclick="openOrderForm('DLS Season Pass')">
+                <img src="https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=300" alt="Season Pass">
+                <div class="title">Season Pass (সিজন পাস)</div>
             </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" id="password" placeholder="Enter Password" required>
+            <div class="game-card" onclick="openOrderForm('DLS Combo Offer')">
+                <img src="https://images.unsplash.com/photo-1614680376593-902f749f7ffc?w=300" alt="Combo Offer">
+                <div class="title">Dream Points - Coins (Combo Offer)</div>
             </div>
-            <div class="form-group">
-                <label>WhatsApp Number</label>
-                <input type="tel" id="whatsapp" placeholder="Your WhatsApp Number" required>
+        </div>
+
+        <!-- Order Form (Opens upon selecting an item) -->
+        <div class="order-modal" id="orderModal">
+            <h3 id="selectedGameTitle">অর্ডার অপশন বেছে নিন</h3>
+            
+            <div class="pack-grid">
+                <div class="pack-card" onclick="selectPack(this, '50 Coin', 250)">
+                    <div class="pack-name">50 Coin 🔥</div>
+                    <div class="pack-price">BDT 250</div>
+                </div>
+                <div class="pack-card" onclick="selectPack(this, '100 Coin', 500)">
+                    <div class="pack-name">100 Coin 🔥</div>
+                    <div class="pack-price">BDT 500</div>
+                </div>
+                <div class="pack-card" onclick="selectPack(this, '750 Coin', 780)">
+                    <div class="pack-name">750 Coin 🔥</div>
+                    <div class="pack-price">BDT 780</div>
+                </div>
+                <div class="pack-card" onclick="selectPack(this, '1040 Coin', 1040)">
+                    <div class="pack-name">1040 Coin 🔥</div>
+                    <div class="pack-price">BDT 1040</div>
+                </div>
             </div>
 
-            <h2>3. Payment Method</h2>
-            <div class="form-group">
-                <select id="paymentMethod" required>
-                    <option value="bKash">bKash</option>
-                    <option value="Nagad">Nagad</option>
-                    <option value="Rocket">Rocket</option>
-                </select>
-            </div>
+            <form onsubmit="sendWhatsAppOrder(event)">
+                <div class="form-group">
+                    <label>Account Type</label>
+                    <select id="accType" required>
+                        <option value="KONAMI ID">KONAMI ID</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="Gmail">Gmail</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Email / User ID</label>
+                    <input type="text" id="userId" placeholder="Enter Email or ID" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="Enter Password" required>
+                </div>
+                <div class="form-group">
+                    <label>WhatsApp Number</label>
+                    <input type="tel" id="whatsapp" placeholder="Your WhatsApp Number" required>
+                </div>
+                <div class="form-group">
+                    <label>Payment Method</label>
+                    <select id="paymentMethod" required>
+                        <option value="bKash">bKash</option>
+                        <option value="Nagad">Nagad</option>
+                        <option value="Rocket">Rocket</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-submit">Buy Now</button>
+            </form>
+        </div>
 
-            <button type="submit" class="btn-buy">Buy Now</button>
-        </form>
     </div>
 
+    <!-- Bottom Navigation Bar -->
     <div class="bottom-nav">
-        <a href="#" class="nav-item">Home</a>
-        <a href="#" class="nav-item">My Orders</a>
-        <a href="#" class="nav-item">Add Money</a>
-        <a href="#" class="nav-item">My Account</a>
+        <a href="#" class="nav-item active">
+            <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            Home
+        </a>
+        <a href="#" class="nav-item">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            Tutorial
+        </a>
+        <a href="#" class="nav-item">
+            <svg viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
+            TopUp
+        </a>
+        <a href="#" class="nav-item">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            Contact Us
+        </a>
     </div>
 
     <script>
+        let selectedGame = "";
+        let selectedPack = "";
         let selectedPrice = 0;
-        let selectedPackageName = "";
 
-        function selectPackage(element, price) {
-            let cards = document.querySelectorAll('.card');
-            cards.forEach(card => card.classList.remove('selected'));
-            element.classList.add('selected');
-            selectedPrice = price;
-            selectedPackageName = element.querySelector('.title').innerText;
+        function openOrderForm(gameName) {
+            selectedGame = gameName;
+            document.getElementById('selectedGameTitle').innerText = gameName + " - প্যাকেজ নির্বাচন করুন";
+            document.getElementById('orderModal').style.display = 'block';
+            window.scrollTo({ top: document.getElementById('orderModal').offsetTop - 20, behavior: 'smooth' });
         }
 
-        function handleOrder(event) {
+        function selectPack(element, packName, price) {
+            let cards = document.querySelectorAll('.pack-card');
+            cards.forEach(card => card.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedPack = packName;
+            selectedPrice = price;
+        }
+
+        function sendWhatsAppOrder(event) {
             event.preventDefault();
-            if (selectedPrice === 0) {
-                alert("অনুগ্রহ করে একটি প্যাকেজ নির্বাচন করুন।");
+            if (!selectedPack) {
+                alert("অনুগ্রহ করে একটি প্যাকেজ সিলেক্ট করুন!");
                 return;
             }
 
@@ -108,20 +258,19 @@
             let whatsapp = document.getElementById('whatsapp').value;
             let paymentMethod = document.getElementById('paymentMethod').value;
 
-            // আপনার হোয়াটসঅ্যাপ নম্বর (৮৮০ সহ বসানো হয়েছে)
-            let myWhatsAppNumber = "8801948834941"; 
+            let myNumber = "8801948834941"; 
 
-            let message = `*--- নতুন অর্ডার এসেছে ---*%0A` +
-                          `*Package:* ${selectedPackageName}%0A` +
-                          `*Price:* BDT ${selectedPrice}%0A` +
-                          `*Account Type:* ${accType}%0A` +
-                          `*User ID:* ${userId}%0A` +
-                          `*Password:* ${password}%0A` +
-                          `*Customer WhatsApp:* ${whatsapp}%0A` +
-                          `*Payment Method:* ${paymentMethod}`;
+            let msg = `*--- Abir Game Shop Order ---*%0A` +
+                      `*Game:* ${selectedGame}%0A` +
+                      `*Pack:* ${selectedPack}%0A` +
+                      `*Price:* BDT ${selectedPrice}%0A` +
+                      `*Account:* ${accType}%0A` +
+                      `*User ID:* ${userId}%0A` +
+                      `*Password:* ${password}%0A` +
+                      `*Customer WA:* ${whatsapp}%0A` +
+                      `*Payment:* ${paymentMethod}`;
 
-            let whatsappUrl = `https://api.whatsapp.com/send?phone=${myWhatsAppNumber}&text=${message}`;
-            window.open(whatsappUrl, '_blank');
+            window.open(`https://api.whatsapp.com/send?phone=${myNumber}&text=${msg}`, '_blank');
         }
     </script>
 </body>
