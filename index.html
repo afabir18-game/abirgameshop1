@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AbirShop - Game TopUp</title>
+    <title>Abir Game Shop</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background-color: #f1f5f9; padding-bottom: 70px; color: #1e293b; }
+        body { background-color: #f1f5f9; padding-bottom: 75px; color: #1e293b; }
 
         /* Header Navigation */
         header { 
             background: #ffffff; 
-            padding: 10px 16px; 
+            padding: 12px 16px; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
@@ -21,29 +21,27 @@
             z-index: 100;
         }
         .logo-container { display: flex; align-items: center; gap: 8px; }
-        .logo-icon { width: 32px; height: 32px; background: #0284c7; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 18px; }
+        .logo-icon { width: 34px; height: 34px; background: #0284c7; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 18px; }
         .logo-text { font-size: 20px; font-weight: 800; color: #0f172a; }
         .logo-text span { color: #0284c7; }
 
-        .header-actions { display: flex; align-items: center; gap: 10px; }
-        .wallet-badge { background: #e0f2fe; color: #0369a1; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; }
-        .menu-btn { background: none; border: none; font-size: 22px; cursor: pointer; }
+        .wallet-badge { background: #e0f2fe; color: #0369a1; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: 700; }
 
         /* Notice Bar */
         .notice-bar { background-color: #0284c7; color: #ffffff; padding: 10px 15px; text-align: center; font-size: 13px; font-weight: 500; }
 
         /* Main Container */
-        .container { max-width: 600px; margin: 0 auto; padding: 12px; }
+        .container { max-width: 600px; margin: 0 auto; padding: 15px; }
 
         /* Section Title */
-        .section-header { margin: 20px 0 12px 0; text-align: center; }
-        .section-header h2 { font-size: 16px; font-weight: 800; color: #0284c7; text-transform: uppercase; letter-spacing: 0.5px; }
+        .section-header { margin: 15px 0 12px 0; text-align: center; }
+        .section-header h2 { font-size: 18px; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        /* 3-Column Grid */
+        /* Game Grid */
         .grid-container { 
             display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 10px; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 15px; 
             margin-bottom: 20px; 
         }
 
@@ -51,26 +49,43 @@
             background: #ffffff; 
             border-radius: 12px; 
             overflow: hidden; 
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04); 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06); 
             cursor: pointer; 
             border: 1px solid #e2e8f0;
             display: flex;
             flex-direction: column;
-            text-align: center;
+            align-items: center;
+            padding: 12px;
+            transition: transform 0.2s;
         }
-        .item-card:active { transform: scale(0.98); }
-        .item-card img { width: 100%; height: 105px; object-fit: cover; background: #cbd5e1; }
-        .item-card .title { font-size: 11px; font-weight: 700; color: #334155; padding: 8px 4px; line-height: 1.2; height: 36px; display: flex; align-items: center; justify-content: center; }
+        .item-card:active { transform: scale(0.97); }
+        .item-card img { width: 100px; height: 100px; object-fit: contain; border-radius: 10px; margin-bottom: 8px; }
+        .item-card .title { font-size: 14px; font-weight: 700; color: #1e293b; text-align: center; }
 
-        /* Order Box Page */
-        .order-page { display: none; background: white; padding: 16px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-top: 15px; }
-        .step-title { font-size: 14px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        /* Offer Poster Image Box */
+        .poster-box {
+            width: 100%;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            display: none;
+        }
+        .poster-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Order Box Section */
+        .order-page { display: none; background: white; padding: 18px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-top: 15px; border: 1px solid #cbd5e1; }
+        .step-title { font-size: 14px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; color: #0f172a; }
         .step-number { background: #0284c7; color: white; width: 22px; height: 22px; border-radius: 50%; display: inline-flex; justify-content: center; align-items: center; font-size: 12px; }
 
         .recharge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 20px; }
-        .recharge-card { border: 1.5px solid #e2e8f0; padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; background: #fff; }
+        .recharge-card { border: 1.5px solid #e2e8f0; padding: 10px; border-radius: 8px; text-align: center; cursor: pointer; background: #fff; }
         .recharge-card.active { border-color: #0284c7; background-color: #f0f9ff; }
-        .recharge-card .pack-title { font-size: 12px; font-weight: 700; color: #1e293b; }
+        .recharge-card .pack-title { font-size: 13px; font-weight: 700; color: #1e293b; }
         .recharge-card .pack-price { color: #0284c7; font-weight: 800; font-size: 13px; margin-top: 4px; }
 
         .form-group { margin-bottom: 12px; }
@@ -79,8 +94,9 @@
         .form-group input:focus { border-color: #0284c7; }
 
         .btn-order { width: 100%; background: #0284c7; color: white; padding: 12px; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 10px; }
+        .btn-order:hover { background: #0369a1; }
 
-        /* Bottom Fixed Bar */
+        /* Bottom Navigation Bar */
         .bottom-bar { 
             position: fixed; 
             bottom: 0; 
@@ -89,169 +105,91 @@
             background: #ffffff; 
             display: flex; 
             justify-content: space-around; 
-            padding: 8px 0; 
+            padding: 10px 0; 
             border-top: 1px solid #e2e8f0; 
             z-index: 100;
         }
-        .bar-item { text-align: center; font-size: 10px; color: #64748b; text-decoration: none; font-weight: 600; }
-        .bar-item icon { font-size: 18px; display: block; margin-bottom: 2px; }
+        .bar-item { text-align: center; font-size: 11px; color: #64748b; text-decoration: none; font-weight: 600; }
         .bar-item.active { color: #0284c7; }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
     <header>
         <div class="logo-container">
             <div class="logo-icon">A</div>
             <div class="logo-text">Abir<span>Shop</span></div>
         </div>
-        <div class="header-actions">
-            <div class="wallet-badge">৳ 0.00</div>
-            <button class="menu-btn">☰</button>
-        </div>
+        <div class="wallet-badge">৳ 0.00</div>
     </header>
 
-    <!-- Notice -->
     <div class="notice-bar">
-        সাইটে অর্ডার দিতে কোনো সমস্যা হলে হোয়াটসঅ্যাপে যোগাযোগ করুন।
+        আমাদের সাইটে অর্ডার দিতে কোনো সমস্যা হলে হোয়াটসঅ্যাপে যোগাযোগ করুন।
     </div>
 
     <div class="container">
         
-        <!-- Category: TopUp -->
         <div class="section-header">
-            <h2>TOPUP</h2>
+            <h2>গেম চয়েস করুন</h2>
         </div>
+
         <div class="grid-container">
-            <div class="item-card" onclick="selectGame('FF Like 👍')">
-                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=300" alt="FF Like">
-                <div class="title">FF Like 👍</div>
+            <div class="item-card" onclick="loadPacks('freefire')">
+                <img src="https://upload.wikimedia.org/wikipedia/en/2/29/Garena_Free_Fire_logo.svg" alt="Free Fire Logo">
+                <div class="title">Free Fire TopUp</div>
             </div>
-            <div class="item-card" onclick="selectGame('Diamond Special Offer')">
-                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=300" alt="Special Offer">
-                <div class="title">Diamond Special Offer</div>
-            </div>
-            <div class="item-card" onclick="selectGame('ইউআইডি টপ আপ [BD SERVER]')">
-                <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=300" alt="UID Topup">
-                <div class="title">ইউআইডি টপ আপ [BD SERVER]</div>
+            <div class="item-card" onclick="loadPacks('efootball')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/EFootball_logo.svg/512px-EFootball_logo.svg.png" alt="eFootball Logo">
+                <div class="title">eFootball Mobile</div>
             </div>
         </div>
 
-        <!-- Category: E-FOOTBALL 2027 -->
-        <div class="section-header">
-            <h2>E-FOOTBALL ( PES ) 2027</h2>
-        </div>
-        <div class="grid-container">
-            <div class="item-card" onclick="selectGame('EFootball Special Offer')">
-                <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=300" alt="EFootball">
-                <div class="title">EFootball™ Special Offer</div>
-            </div>
-            <div class="item-card" onclick="selectGame('EFootball Android')">
-                <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=300" alt="Android">
-                <div class="title">EFootball™ [Android]</div>
-            </div>
-            <div class="item-card" onclick="selectGame('EFootball iPhone')">
-                <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=300" alt="iPhone">
-                <div class="title">EFootball™ [ I-Phone ]</div>
-            </div>
+        <div class="poster-box" id="posterBox">
+            <img id="posterImg" src="" alt="Offer Poster">
         </div>
 
-        <!-- Category: DLS 2026 -->
-        <div class="section-header">
-            <h2>DREAM LEAGUE SOCCER 2026</h2>
-        </div>
-        <div class="grid-container">
-            <div class="item-card" onclick="selectGame('DLS 26 Coins')">
-                <img src="https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=300" alt="DLS 26">
-                <div class="title">DLS 26</div>
-            </div>
-            <div class="item-card" onclick="selectGame('DLS Season Pass')">
-                <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=300" alt="Season Pass">
-                <div class="title">Season Pass (সিজন পাস)</div>
-            </div>
-            <div class="item-card" onclick="selectGame('DLS Combo Offer')">
-                <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=300" alt="Combo Offer">
-                <div class="title">Dream Points - Combo Offer</div>
-            </div>
-        </div>
-
-        <!-- Checkout Section -->
         <div class="order-page" id="orderSection">
-            <h3 style="font-size:15px; font-weight:800; margin-bottom:15px; color:#0284c7;" id="gameTitle">প্যাকেজ নির্বাচন করুন</h3>
+            <h3 style="font-size:16px; font-weight:800; margin-bottom:15px; color:#0284c7;" id="selectedGameTitle">রিচার্জ নির্বাচন করুন</h3>
             
-            <div class="step-title"><span class="step-number">1</span> Select Recharge</div>
-            <div class="recharge-grid">
-                <div class="recharge-card" onclick="choosePack(this, '50 Diamond / Coin', 40)">
-                    <div class="pack-title">50 Diamond / Coin 🔥</div>
-                    <div class="pack-price">BDT 40</div>
+            <div class="step-title"><span class="step-number">১</span> প্যাকেজ নির্বাচন করুন</div>
+            <div class="recharge-grid" id="packContainer">
                 </div>
-                <div class="recharge-card" onclick="choosePack(this, '100 Diamond / Coin', 75)">
-                    <div class="pack-title">100 Diamond / Coin 🔥</div>
-                    <div class="pack-price">BDT 75</div>
-                </div>
-                <div class="recharge-card" onclick="choosePack(this, '500 Diamond / Coin', 360)">
-                    <div class="pack-title">500 Diamond / Coin 🔥</div>
-                    <div class="pack-price">BDT 360</div>
-                </div>
-                <div class="recharge-card" onclick="choosePack(this, '1000 Diamond / Coin', 700)">
-                    <div class="pack-title">1000 Diamond / Coin 🔥</div>
-                    <div class="pack-price">BDT 700</div>
-                </div>
-            </div>
 
-            <div class="step-title"><span class="step-number">2</span> Account Info</div>
-            <form onsubmit="submitToWhatsApp(event)">
+            <div class="step-title"><span class="step-number">২</span> অ্যাকাউন্টের বিবরণ</div>
+            <form onsubmit="sendWhatsApp(event)">
                 <div class="form-group">
                     <label>Account Type</label>
-                    <select id="accType">
-                        <option>Facebook</option>
-                        <option>Gmail</option>
-                        <option>Konami ID</option>
-                        <option>Player ID Code</option>
-                    </select>
+                    <select id="accType"></select>
                 </div>
                 <div class="form-group">
-                    <label>Your Player ID / Email</label>
+                    <label>Player ID / Email / Konami ID</label>
                     <input type="text" id="userId" placeholder="প্লেয়ার আইডি বা ইমেইল লিখুন" required>
                 </div>
                 <div class="form-group">
                     <label>Password / WhatsApp Number</label>
-                    <input type="text" id="userPass" placeholder="পাসওয়ার্ড বা আপনার নাম" required>
+                    <input type="text" id="userPass" placeholder="পাসওয়ার্ড বা আপনার মোবাইল নাম্বার" required>
                 </div>
 
-                <div class="step-title" style="margin-top:15px;"><span class="step-number">3</span> Select Payment</div>
+                <div class="step-title" style="margin-top:15px;"><span class="step-number">৩</span> পেমেন্ট মেথড</div>
                 <div class="form-group">
                     <select id="payMethod">
-                        <option>bKash</option>
-                        <option>Nagad</option>
-                        <option>Rocket</option>
+                        <option value="bKash">bKash (বিকাশ)</option>
+                        <option value="Nagad">Nagad (নগদ)</option>
+                        <option value="Rocket">Rocket (রকেট)</option>
                     </select>
                 </div>
 
-                <button type="submit" class="btn-order">অর্ডার সম্পূর্ণ করুন (WhatsApp)</button>
+                <button type="submit" class="btn-order">অর্ডার কনফার্ম করুন (WhatsApp)</button>
             </form>
         </div>
 
     </div>
 
-    <!-- Bottom Menu -->
     <div class="bottom-bar">
-        <a href="#" class="bar-item active">
-            <icon>🏠</icon> Home
-        </a>
-        <a href="#" class="bar-item">
-            <icon>📦</icon> My Orders
-        </a>
-        <a href="#" class="bar-item">
-            <icon>➕</icon> Add Money
-        </a>
-        <a href="#" class="bar-item">
-            <icon>🔑</icon> My Codes
-        </a>
-        <a href="#" class="bar-item">
-            <icon>👤</icon> Account
-        </a>
+        <a href="#" class="bar-item active">🏠 Home</a>
+        <a href="#" class="bar-item">📦 My Orders</a>
+        <a href="#" class="bar-item">➕ Add Money</a>
+        <a href="#" class="bar-item">👤 Account</a>
     </div>
 
     <script>
@@ -259,46 +197,79 @@
         let currentPack = "";
         let currentPrice = 0;
 
-        function selectGame(name) {
-            currentGame = name;
-            document.getElementById('gameTitle').innerText = name + " - প্যাকেজ নির্বাচন করুন";
-            document.getElementById('orderSection').style.display = 'block';
-            window.scrollTo({ top: document.getElementById('orderSection').offsetTop - 20, behavior: 'smooth' });
-        }
+        // Free Fire Packs (ছবি অনুযায়ী)
+        const freefirePacks = [
+            { name: "50 Diamond 💎", price: 35 },
+            { name: "100 Diamond 💎", price: 70 },
+            { name: "115 Diamond 💎", price: 79 },
+            { name: "240 (+15) Diamond 💎", price: 158 },
+            { name: "355 (+35) Diamond 💎", price: 237 },
+            { name: "480 (+50) Diamond 💎", price: 316 },
+            { name: "505 (+70) Diamond 💎", price: 336 },
+            { name: "610 (+100) Diamond 💎", price: 400 },
+            { name: "725 (+150) Diamond 💎", price: 479 },
+            { name: "850 (+200) Diamond 💎", price: 558 },
+            { name: "1090 (+150) Diamond 💎", price: 716 },
+            { name: "1240 (+400) Diamond 💎", price: 800 },
+            { name: "1595 (+500) Diamond 💎", price: 1037 },
+            { name: "1850 (+750) Diamond 💎", price: 1200 }
+        ];
 
-        function choosePack(element, pack, price) {
-            let cards = document.querySelectorAll('.recharge-card');
-            cards.forEach(c => c.classList.remove('active'));
-            element.classList.add('active');
-            currentPack = pack;
-            currentPrice = price;
-        }
+        // eFootball Packs (ছবি অনুযায়ী)
+        const efootballPacks = [
+            { name: "50 কয়েন (Suarez Android) ⚽", price: 165 },
+            { name: "100 কয়েন (Casillas Android) ⚽", price: 400 },
+            { name: "130 কয়েন ⚽", price: 165 },
+            { name: "300 কয়েন ⚽", price: 355 },
+            { name: "550 কয়েন ⚽", price: 580 },
+            { name: "750 কয়েন ⚽", price: 770 },
+            { name: "1040 কয়েন ⚽", price: 1040 },
+            { name: "2130 কয়েন ⚽", price: 2040 },
+            { name: "3250 কয়েন ⚽", price: 3070 },
+            { name: "5700 কয়েন ⚽", price: 5090 },
+            { name: "12800 কয়েন ⚽", price: 11099 }
+        ];
 
-        function submitToWhatsApp(event) {
-            event.preventDefault();
-            if(!currentPack) {
-                alert("অনুগ্রহ করে একটি প্যাকেজ সিলেক্ট করুন!");
-                return;
+        function loadPacks(game) {
+            let container = document.getElementById('packContainer');
+            let posterBox = document.getElementById('posterBox');
+            let posterImg = document.getElementById('posterImg');
+            
+            container.innerHTML = "";
+            currentPack = "";
+            currentPrice = 0;
+
+            let packs = [];
+            if(game === 'freefire') {
+                currentGame = "Free Fire TopUp";
+                packs = freefirePacks;
+                // Free Fire Poster Image
+                posterImg.src = "https://i.ibb.co/L5QkQ9z/ff-poster.png"; 
+                document.getElementById('accType').innerHTML = `
+                    <option value="Player ID Code">Player ID Code (UID)</option>
+                    <option value="Facebook">Facebook Login</option>
+                    <option value="Gmail">Gmail Login</option>`;
+            } else if(game === 'efootball') {
+                currentGame = "eFootball Mobile";
+                packs = efootballPacks;
+                // eFootball Poster Image
+                posterImg.src = "https://i.ibb.co/VMyh0F5/efootball-poster.png";
+                document.getElementById('accType').innerHTML = `
+                    <option value="KONAMI ID">KONAMI ID Login</option>
+                    <option value="Facebook">Facebook Login</option>
+                    <option value="Gmail">Gmail Login</option>`;
             }
 
-            let type = document.getElementById('accType').value;
-            let id = document.getElementById('userId').value;
-            let pass = document.getElementById('userPass').value;
-            let payment = document.getElementById('payMethod').value;
-            let phone = "8801948834941";
+            document.getElementById('selectedGameTitle').innerText = currentGame + " - প্যাকেজ নির্বাচন করুন";
 
-            let message = `*--- AbirShop Order ---*%0A` +
-                          `*Item:* ${currentGame}%0A` +
-                          `*Pack:* ${currentPack}%0A` +
-                          `*Price:* BDT ${currentPrice}%0A` +
-                          `*Type:* ${type}%0A` +
-                          `*ID/Email:* ${id}%0A` +
-                          `*Pass/Info:* ${pass}%0A` +
-                          `*Payment:* ${payment}`;
+            packs.forEach(p => {
+                let div = document.createElement('div');
+                div.className = 'recharge-card';
+                div.onclick = function() { choosePack(div, p.name, p.price); };
+                div.innerHTML = `<div class="pack-title">${p.name}</div><div class="pack-price">${p.price} Tk</div>`;
+                container.appendChild(div);
+            });
 
-            window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${message}`, '_blank');
-        }
-    </script>
-
-</body>
-</html>
+            posterBox.style.display = 'block';
+            document.getElementById('orderSection').style.display = 'block';
+            window.scrollTo({ top: document.getElementById('posterBox').offsetTop - 20,
