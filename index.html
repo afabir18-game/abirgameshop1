@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> A&I Arcade </title>
+     <title> A&I Arcade</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
         body { background-color: #f1f5f9; padding-bottom: 75px; color: #1e293b; }
 
-        /* Header Navigation */
         header { 
             background: #ffffff; 
             padding: 12px 16px; 
@@ -27,17 +26,11 @@
 
         .wallet-badge { background: #e0f2fe; color: #0369a1; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: 700; cursor: pointer; }
 
-        /* Notice Bar */
         .notice-bar { background-color: #0284c7; color: #ffffff; padding: 10px 15px; text-align: center; font-size: 13px; font-weight: 500; }
-
-        /* Main Container */
         .container { max-width: 600px; margin: 0 auto; padding: 15px; }
-
-        /* Section Title */
         .section-header { margin: 15px 0 12px 0; text-align: center; }
         .section-header h2 { font-size: 18px; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        /* Game Grid (4 Games Grid) */
         .grid-container { 
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
@@ -59,14 +52,12 @@
             transition: all 0.2s;
         }
         .item-card:hover, .item-card:active { border-color: #0284c7; background-color: #f0f9ff; transform: scale(0.98); }
-        .item-card .icon-badge { margin-bottom: 8px; display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; }
-        .item-card .icon-badge img { width: 100%; height: 100%; object-fit: contain; border-radius: 10px; }
+        .item-card .icon-badge { margin-bottom: 8px; display: flex; align-items: center; justify-content: center; width: 65px; height: 65px; }
+        .item-card .icon-badge img { width: 100%; height: 100%; object-fit: contain; }
         .item-card .title { font-size: 14px; font-weight: 700; color: #1e293b; text-align: center; }
 
-        /* Sub Category Box for COC */
         .sub-category-box { display: none; margin-bottom: 20px; }
 
-        /* Order Box Section */
         .order-page { display: none; background: white; padding: 18px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-top: 15px; border: 1px solid #cbd5e1; }
         .step-title { font-size: 14px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; color: #0f172a; }
         .step-number { background: #0284c7; color: white; width: 22px; height: 22px; border-radius: 50%; display: inline-flex; justify-content: center; align-items: center; font-size: 12px; }
@@ -85,7 +76,6 @@
         .btn-order { width: 100%; background: #0284c7; color: white; padding: 12px; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 10px; }
         .btn-order:hover { background: #0369a1; }
 
-        /* Bottom Navigation Bar */
         .bottom-bar { 
             position: fixed; 
             bottom: 0; 
@@ -117,7 +107,6 @@
 </head>
 <body>
 
-    <!-- Header -->
     <header>
         <div class="logo-container" onclick="goHome()">
             <div class="logo-icon">A</div>
@@ -126,46 +115,45 @@
         <div class="wallet-badge" onclick="navAlert('Add Money')">৳ 0.00</div>
     </header>
 
-    <!-- Notice -->
     <div class="notice-bar">
         আমাদের সাইটে অর্ডার দিতে কোনো সমস্যা হলে হোয়াটসঅ্যাপে যোগাযোগ করুন।
     </div>
 
     <div class="container">
-        
         <div class="section-header">
             <h2>গেম সিলেক্ট করুন</h2>
         </div>
 
-        <!-- Main Games Choice Buttons -->
         <div class="grid-container">
             <div class="item-card" onclick="loadPacks('freefire')">
                 <div class="icon-badge">
-                    <img src="https://img.icons8.com/color/96/garena-free-fire.png" alt="Free Fire" onerror="this.onerror=null; this.src='1000069918.png';">
+                    <img src="https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/garena-free-fire.png" alt="Free Fire" onerror="this.src='https://img.icons8.com/color/96/flame.png'">
                 </div>
                 <div class="title">Free Fire TopUp</div>
             </div>
+
             <div class="item-card" onclick="loadPacks('efootball')">
                 <div class="icon-badge">
-                    <img src="https://img.icons8.com/color/96/soccer-ball.png" alt="eFootball" onerror="this.onerror=null; this.src='1000069915.jpg';">
+                    <img src="https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/efootball.png" alt="eFootball" onerror="this.src='https://img.icons8.com/color/96/soccer-ball.png'">
                 </div>
                 <div class="title">eFootball Mobile</div>
             </div>
+
             <div class="item-card" onclick="loadPacks('pubg')">
                 <div class="icon-badge">
-                    <img src="https://img.icons8.com/color/96/pubg.png" alt="PUBG Mobile UC">
+                    <img src="https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/pubg-mobile.png" alt="PUBG Mobile" onerror="this.src='https://img.icons8.com/color/96/pubg.png'">
                 </div>
                 <div class="title">PUBG Mobile UC</div>
             </div>
+
             <div class="item-card" onclick="showCocOptions()">
                 <div class="icon-badge">
-                    <img src="https://img.icons8.com/color/96/clash-of-clans.png" alt="Clash of Clans">
+                    <img src="https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/clash-of-clans.png" alt="Clash of Clans" onerror="this.src='https://img.icons8.com/color/96/sword.png'">
                 </div>
                 <div class="title">Clash of Clans (COC)</div>
             </div>
         </div>
 
-        <!-- Sub Categories for Clash of Clans -->
         <div class="sub-category-box" id="cocSubCat">
             <div class="section-header">
                 <h3 style="font-size: 15px; color: #0284c7;">COC ক্যাটাগরি বেছে নিন</h3>
@@ -198,14 +186,11 @@
             </div>
         </div>
 
-        <!-- Order Form Section -->
         <div class="order-page" id="orderSection">
             <h3 style="font-size:16px; font-weight:800; margin-bottom:15px; color:#0284c7;" id="selectedGameTitle">রিচার্জ নির্বাচন করুন</h3>
             
             <div class="step-title"><span class="step-number">১</span> প্যাকেজ নির্বাচন করুন</div>
-            <div class="recharge-grid" id="packContainer">
-                <!-- JavaScript loads packs here -->
-            </div>
+            <div class="recharge-grid" id="packContainer"></div>
 
             <div class="step-title"><span class="step-number">২</span> অ্যাকাউন্টের বিবরণ</div>
             <form onsubmit="sendWhatsApp(event)">
@@ -234,23 +219,13 @@
                 <button type="submit" class="btn-order">অর্ডার কনফার্ম করুন (WhatsApp)</button>
             </form>
         </div>
-
     </div>
 
-    <!-- Bottom Menu Bar -->
     <div class="bottom-bar">
-        <button class="bar-item active" onclick="goHome()">
-            <span>🏠</span> Home
-        </button>
-        <button class="bar-item" onclick="navAlert('My Orders')">
-            <span>📦</span> My Orders
-        </button>
-        <button class="bar-item" onclick="navAlert('Add Money')">
-            <span>➕</span> Add Money
-        </button>
-        <button class="bar-item" onclick="navAlert('Account')">
-            <span>👤</span> Account
-        </button>
+        <button class="bar-item active" onclick="goHome()"><span>🏠</span> Home</button>
+        <button class="bar-item" onclick="navAlert('My Orders')"><span>📦</span> My Orders</button>
+        <button class="bar-item" onclick="navAlert('Add Money')"><span>➕</span> Add Money</button>
+        <button class="bar-item" onclick="navAlert('Account')"><span>👤</span> Account</button>
     </div>
 
     <script>
@@ -258,125 +233,98 @@
         let currentPack = "";
         let currentPrice = 0;
 
-        // Free Fire Packs
+        // আপনার স্ক্রিনশটের হুবহু দামগুলো
         const freefirePacks = [
-            { name: "50 Diamond 💎", price: 35৳ },
-            { name: "100 Diamond 💎", price: 70৳ },
-            { name: "115 Diamond 💎", price: 79৳ },
-            { name: "240  Diamond 💎", price: 145৳ },
-            { name: "355  Diamond 💎", price: 237৳ },
-            { name: "480  Diamond 💎", price: 316৳ },
-            { name: "505  Diamond 💎", price: 336৳ },
-            { name: "610  Diamond 💎", price: 400৳ },
-            { name: "725  Diamond 💎", price: 479৳ },
-            { name: "850  Diamond 💎", price: 558৳ },
-            { name: "1090  Diamond 💎", price: 716৳ },
-            { name: "1240  Diamond 💎", price: 800৳ },
-            { name: "1595  Diamond 💎", price: 1037৳ },
-            { name: "1850  Diamond 💎", price: 1200৳ }
+            { name: "50 Diamond 💎", price: 35 },
+            { name: "100 Diamond 💎", price: 70 },
+            { name: "115 Diamond 💎", price: 79 },
+            { name: "240 Diamond 💎", price: 145 },
+            { name: "355 Diamond 💎", price: 237 },
+            { name: "480 Diamond 💎", price: 316 },
+            { name: "505 Diamond 💎", price: 336 },
+            { name: "650 Diamond 💎", price: 440 },
+            { name: "725 Diamond 💎", price: 479 },
+            { name: "850 Diamond 💎", price: 550 },
+            { name: "1090 Diamond 💎", price: 714 },
+            { name: "1240 Diamond 💎", price: 800 },
+            { name: "1505 Diamond 💎", price: 1017 },
+            { name: "1850 Diamond 💎", price: 1220 }
         ];
 
-        // eFootball Packs
         const efootballPacks = [
-            { name: "50 কয়েন (Suarez Android) ❤‍🔥❤‍🔥❤‍🔥", price: 165৳ },
-            { name: "100 কয়েন (Casillas Android) ❤‍🔥❤‍🔥❤‍🔥", price: 350৳ },
-            { name: "130 কয়েন 🪙", price: 99 ৳ },
-            { name: "300 কয়েন 🪙", price: 255৳ },
-            { name: "550 কয়েন 🪙", price: 580৳ },
-            { name: "750 কয়েন 🪙", price: 770৳ },
-            { name: "1040 কয়েন 🪙", price: 1040৳ },
-            { name: "2130 কয়েন 🪙", price: 2040৳ },
-            { name: "3250 কয়েন 🪙", price: 3070৳ },
-            { name: "5700 কয়েন 🪙", price: 5090৳ },
-            { name: "12800 কয়েন 🪙", price: 11099৳ }
+            { name: "50 কয়েন (Suarez Android) 🔥🔥🔥", price: 155 },
+            { name: "100 কয়েন (Casillas Android) 🔥🔥🔥", price: 330 },
+            { name: "130 কয়েন 🪙", price: 90 },
+            { name: "300 কয়েন 🪙", price: 255 },
+            { name: "550 কয়েন 🪙", price: 500 },
+            { name: "750 কয়েন 🪙", price: 770 },
+            { name: "1540 কয়েন 🪙", price: 1540 },
+            { name: "2130 কয়েন 🪙", price: 2040 },
+            { name: "3250 কয়েন 🪙", price: 3075 },
+            { name: "5700 কয়েন 🪙", price: 5400 },
+            { name: "12800 কয়েন 🪙", price: 11950 }
         ];
 
-        // PUBG Mobile UC Packs
         const pubgPacks = [
-            { name: "60 UC 💵", price: 99৳},
-            { name: "325  UC 💵", price: 450৳},
-            { name: "660  UC 💵", price: 970৳ },
-            { name: "1800  UC 💵", price: 2450৳ },
-            { name: "3850  UC 💵", price: 4850৳ },
-            { name: "8100  UC 💵", price: 9600৳ }
+            { name: "60 UC 💵", price: 93 },
+            { name: "325 UC 💵", price: 450 },
+            { name: "660 UC 💵", price: 875 },
+            { name: "1800 UC 💵", price: 2450 },
+            { name: "3850 UC 💵", price: 4850 },
+            { name: "8100 UC 💵", price: 9800 }
         ];
 
-        // COC Gold Pass Packs
         const cocGoldPassPacks = [
-            { name: "Discount Gold Pass 🎟️", price: 185৳ },
-            { name: "Gold Pass 4.99$ 🎟️", price: 660৳ }
-             { কোনো প্যাকেট যদি খুজে না পান তাহলে আমাদের WhatsApp এ যোগাযোগ করুন}
+            { name: "Discount Gold Pass 🎟️", price: 195 },
+            { name: "Gold Pass 4.99$ 🎟️", price: 650 }
         ];
 
-        // COC Gems Packs
         const cocGemsPacks = [
-            { name: "80 Gems 💎", price: 99৳ },
-            { name: "500 Gems 💎", price: 540৳ },
-            { name: "1200 Gems 💎", price: 1080৳ },
-            { name: "2500 Gems 💎", price: 2150৳ },
-            { name: "6500 Gems 💎", price: 5350৳ }
+            { name: "80 Gems 💎", price: 99 },
+            { name: "500 Gems 💎", price: 540 },
+            { name: "1200 Gems 💎", price: 1015 },
+            { name: "2500 Gems 💎", price: 2150 },
+            { name: "6500 Gems 💎", price: 5350 }
         ];
 
         function showCocOptions() {
             document.getElementById('cocSubCat').style.display = 'block';
             document.getElementById('orderSection').style.display = 'none';
-            window.scrollTo({ top: document.getElementById('cocSubCat').offsetTop - 20, behavior: 'smooth' });
         }
 
         function loadPacks(game) {
             let container = document.getElementById('packContainer');
             container.innerHTML = "";
-            currentPack = "";
-            currentPrice = 0;
-
             let packs = [];
+
             if(game === 'freefire') {
                 document.getElementById('cocSubCat').style.display = 'none';
                 currentGame = "Free Fire TopUp";
                 packs = freefirePacks;
                 document.getElementById('userIdLabel').innerText = "Player UID / ID";
-                document.getElementById('accType').innerHTML = `
-                    <option value="Player ID Code">Player ID Code (UID)</option>
-                    <option value="Facebook">Facebook Login</option>
-                    <option value="Gmail">Gmail Login</option>`;
+                document.getElementById('accType').innerHTML = `<option value="UID">Player ID Code (UID)</option><option value="Facebook">Facebook Login</option>`;
             } else if(game === 'efootball') {
                 document.getElementById('cocSubCat').style.display = 'none';
                 currentGame = "eFootball Mobile";
                 packs = efootballPacks;
                 document.getElementById('userIdLabel').innerText = "Konami ID / Email";
-                document.getElementById('accType').innerHTML = `
-                    <option value="KONAMI ID">KONAMI ID Login</option>
-                    <option value="Facebook">Facebook Login</option>
-                    <option value="Gmail">Gmail Login</option>`;
+                document.getElementById('accType').innerHTML = `<option value="KONAMI ID">KONAMI ID Login</option>`;
             } else if(game === 'pubg') {
                 document.getElementById('cocSubCat').style.display = 'none';
                 currentGame = "PUBG Mobile UC";
                 packs = pubgPacks;
                 document.getElementById('userIdLabel').innerText = "Character ID (UID)";
-                document.getElementById('accType').innerHTML = `
-                    <option value="Player ID Code">Player ID (UID)</option>
-                    <option value="Twitter/X">Twitter/X Login</option>
-                    <option value="Facebook">Facebook Login</option>`;
+                document.getElementById('accType').innerHTML = `<option value="UID">Player ID (UID)</option>`;
             } else if(game === 'coc_goldpass') {
-                currentGame = "COC Gold Pass";
+                currentGame = "Clash of Clans Gold Pass";
                 packs = cocGoldPassPacks;
-                document.getElementById('userIdLabel').innerText = "Enter Your Supercell Gmail";
-                document.getElementById('accType').innerHTML = `
-                    <option value="Supercell ID">Supercell ID (Gmail)</option>
-                    <option value="Player Tag">Player Tag (#TAG)</option>`;
-            } else if(game === 'coc_gems') {
-                currentGame = "COC Gems Top Up";
+                document.getElementById('userIdLabel').innerText = "Supercell Gmail / Tag";
+                document.getElementById('accType').innerHTML = `<option value="Supercell ID">Supercell ID (Gmail)</option>`;
+            } else if(game === 'coc_gems' || game === 'coc_builder' || game === 'coc_event') {
+                currentGame = "Clash of Clans Gems";
                 packs = cocGemsPacks;
-                document.getElementById('userIdLabel').innerText = "Enter Your Supercell Gmail / Tag";
-                document.getElementById('accType').innerHTML = `
-                    <option value="Supercell ID">Supercell ID (Gmail)</option>
-                    <option value="Player Tag">Player Tag (#TAG)</option>`;
-            } else if(game === 'coc_builder' || game === 'coc_event') {
-                currentGame = game === 'coc_builder' ? "COC Builder Pack" : "COC Event Pass";
-                packs = [{ name: "Standard Pack 📦", price: 299৳ }];
-                document.getElementById('userIdLabel').innerText = "Enter Your Supercell Gmail";
-                document.getElementById('accType').innerHTML = `
-                    <option value="Supercell ID">Supercell ID (Gmail)</option>`;
+                document.getElementById('userIdLabel').innerText = "Supercell Gmail / Tag";
+                document.getElementById('accType').innerHTML = `<option value="Supercell ID">Supercell ID (Gmail)</option>`;
             }
 
             document.getElementById('selectedGameTitle').innerText = currentGame + " - প্যাকেজ নির্বাচন করুন";
@@ -390,12 +338,10 @@
             });
 
             document.getElementById('orderSection').style.display = 'block';
-            window.scrollTo({ top: document.getElementById('orderSection').offsetTop - 20, behavior: 'smooth' });
         }
 
         function choosePack(element, pack, price) {
-            let cards = document.querySelectorAll('.recharge-card');
-            cards.forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.recharge-card').forEach(c => c.classList.remove('active'));
             element.classList.add('active');
             currentPack = pack;
             currentPrice = price;
@@ -403,39 +349,22 @@
 
         function sendWhatsApp(event) {
             event.preventDefault();
-            if(!currentPack) {
-                alert("অনুগ্রহ করে একটি প্যাকেজ সিলেক্ট করুন!");
-                return;
-            }
-
+            if(!currentPack) return alert("প্যাকেজ সিলেক্ট করুন!");
             let type = document.getElementById('accType').value;
             let id = document.getElementById('userId').value;
             let pass = document.getElementById('userPass').value;
             let payment = document.getElementById('payMethod').value;
             let phone = "8801948834941";
-
-            let message = `*--- Abir Game Shop Order ---*%0A` +
-                          `*Game:* ${currentGame}%0A` +
-                          `*Pack:* ${currentPack}%0A` +
-                          `*Price:* ${currentPrice} Tk%0A` +
-                          `*Account Type:* ${type}%0A` +
-                          `*User ID/Email:* ${id}%0A` +
-                          `*Password/WA:* ${pass}%0A` +
-                          `*Payment:* ${payment}`;
-
+            let message = `*Order:* ${currentGame}%0A*Pack:* ${currentPack}%0A*Price:* ${currentPrice} Tk%0A*Type:* ${type}%0A*ID:* ${id}%0A*Pass/WA:* ${pass}%0A*Payment:* ${payment}`;
             window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${message}`, '_blank');
         }
 
-        /* Navigation Actions */
         function goHome() {
             document.getElementById('cocSubCat').style.display = 'none';
             document.getElementById('orderSection').style.display = 'none';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function navAlert(menuName) {
-            alert(menuName + " অপশনটি খুব শীঘ্রই আসছে! যেকোনো প্রয়োজনে সরাসরি হোয়াটসঅ্যাপে যোগাযোগ করুন।");
-        }
+        function navAlert(menu) { alert(menu + " অপশনটি আসছে!"); }
     </script>
 </body>
 </html>
